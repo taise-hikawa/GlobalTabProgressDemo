@@ -12,6 +12,7 @@ struct GlobalTabProgressDemoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .withProgressOverlay()
         }
     }
 }

@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var tabService = TabNavigationService.shared
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView(selection: $tabService.selectedTab) {
+            HomeContainerView()
+                .tabItem {
+                    Label(AppTab.home.title, systemImage: AppTab.home.iconName)
+                }
+                .tag(AppTab.home)
+
+            SettingsContainerView()
+                .tabItem {
+                    Label(AppTab.settings.title, systemImage: AppTab.settings.iconName)
+                }
+                .tag(AppTab.settings)
         }
-        .padding()
+        .withTabNavigation()
     }
 }
 
